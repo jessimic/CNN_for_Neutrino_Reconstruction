@@ -191,7 +191,7 @@ To create the processing scripts, you will need IceTry access in the IceCube sof
 		- Give test name `--test PegLeg` or "Retro". Use "oscnext for no comparison
 	- Need to load in same model as training (`cnn_model.py`)
 	- Creates many plots and outputs to model directory, with subfolder that has the test name and epoch number (gives ability to perform multiple test types on multiple epoch stages)
-	- Look at `make_jobs/plot_CNN/` for slurm submission examples and `make_jobs_condor/plot_CNN/` for HTCondor examples
+	- Look at `make_jobs/plot_CNN/` for slurm submission examples
 
 
 
@@ -220,13 +220,13 @@ To create the processing scripts, you will need IceTry access in the IceCube sof
 ```python $INDIR/flatten_energy_distribution.py -i NuMu_140000_000???_level2_sim2.zst_lt200_NOvertex_IC19.hdf5 -o NuMu_140000_level2_sim2_IC19 
 	--emax 100 --emin 5 --max_per_bin 36034 --cuts CC --shuffle False 
 	--num_out 1 --start "old_start_DC" --end "all_end"
-	```
-	- Example for final level submission script (put 7 intermediate files together):
+```
+- Example for final level submission script (put 7 intermediate files together):
 ```python $INDIR/flatten_energy_distribution.py -i NuMu_140000_level2_sim?_IC19lt150_CC_start_IC7_all_end_flat_145bins_46240evtperbin.hdf5 -o NuMu_140000_level2_IC19_ 
 --emax 100 --emin 5 --max_per_bin 36034 --cuts CC --start old_start_DC --shuffle True 
 --num_out 7
 ```
-	- Scripts for HPCC in `make_jobs/
+- Scripts for HPCC in `make_jobs/`
 - Cut, concatenate, and transform data with `cut_concat_transform_separate_files.py`
 	- If you already cut and concatenated with the `flatten_energy_distribution`, then you won't need to use that functionality here
 	- You can use the cut and concat features if skipped flattening (like for a testing sample)
@@ -242,7 +242,8 @@ To create the processing scripts, you will need IceTry access in the IceCube sof
 	- Example for transforming one file
 ```python $INDIR/cut_concat_transform_separate_files.py -i NuMu_140000_level2_IC19_lt150_CC_start_IC7_all_end_flat_145bins_46240evtperbin_file00.hdf5 
 	-o NuMu_140000_level2_IC19_lt150_CC_start_IC7_all_end_flat_145bins_46240evtperbin_file00
-	-c CC --emax 100 --emin 5 --shuffle False --trans_output True --tmax 200.0 --num_out 1```
+	-c CC --emax 100 --emin 5 --shuffle False --trans_output True --tmax 200.0 --num_out 1
+```
 	
 
 #### Description of Scripts
